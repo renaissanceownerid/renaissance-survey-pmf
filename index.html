@@ -152,6 +152,7 @@
     font: inherit; font-size: 15px; transition: border-color .15s, box-shadow .15s;
   }
   input::placeholder, textarea::placeholder { color: var(--faint); }
+  .other-wrap { margin-top: 12px; }
   input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
   textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
   .prefix-wrap { position: relative; }
@@ -383,8 +384,8 @@ const PROFIL = {
   desainer: [
     { t:'text',  k:'nama', label:'Nama lengkap', req:true },
     { t:'text',  k:'perusahaan', label:'Nama studio / perusahaan', req:true },
-    { t:'radio', k:'posisi', label:'Posisi Anda', req:true, opts:['Owner / Principal','Arsitek / Desainer','Drafter','Project Manager','Admin / Keuangan','Lainnya'] },
-    { t:'radio', k:'lama', label:'Sudah berapa lama usaha Anda beroperasi?', opts:O_LAMA },
+    { t:'radio', k:'posisi', label:'Posisi Anda', req:true, other:'Lainnya', opts:['Principal','Arsitek / Interior','Senior Architect','Junior Architect','Intern','Drafter','Lainnya'] },
+    { t:'radio', k:'lama', label:'Sudah berapa lama kamu bekerja?', opts:O_LAMA },
     { t:'radio', k:'tim', label:'Jumlah orang di studio Anda', opts:O_JUMLAH_S },
     { t:'radio', k:'proyekbln', label:'Rata-rata proyek desain per bulan', opts:O_PERBULAN },
     { t:'radio', k:'nilaiproyek', label:'Kisaran fee desain per m²', opts:O_FEE_M2 },
@@ -413,9 +414,9 @@ const PROFIL = {
 /* ===================== CARA KERJA PER SEGMEN ===================== */
 const CARAKERJA = {
   desainer: [
-    { t:'checkbox', k:'tooling', label:'Proposal fee dibuat menggunakan apa?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Excel / Google Sheets','Word / template dokumen','Tulis tangan','Langsung melalui WhatsApp','Export dari software desain (AutoCAD, SketchUp)','Software / ERP custom'] },
-    { t:'radio', k:'lamapenawaran', label:'Berapa lama dari brief klien hingga proposal siap dikirim?', req:true, opts:O_DURASI },
-    { t:'radio', k:'siapabikin', label:'Siapa yang menyusun angka fee?', opts:['Principal','Owner / Direktur','Arsitek / desainer penanggung jawab proyek','Drafter','Admin','Finance','Procurement','Outsource / freelance','Tidak menentu, bergantian'] },
+    { t:'checkbox', k:'tooling', label:'Penawaran Desain Arsitektur dan/atau Interior untuk calon klien dibuat dengan apa?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Excel / Google Sheets','Word / template dokumen','Tulis tangan','Langsung melalui WhatsApp','Export dari software desain (AutoCAD, SketchUp)','Software / ERP custom'] },
+    { t:'radio', k:'lamapenawaran', label:'Berapa lama pembuatannya?', req:true, opts:O_DURASI },
+    { t:'radio', k:'siapabikin', label:'Siapa yang membuat Penawaran Desain Arsitektur dan/atau Interior?', opts:['Principal','Owner / Direktur','Arsitek / desainer penanggung jawab proyek','Drafter','Admin','Finance','Procurement','Outsource / freelance','Tidak menentu, bergantian'] },
     { t:'checkbox', k:'caraharga', label:'Bagaimana Anda memperoleh informasi harga & ketersediaan material?', hint:'Dapat memilih lebih dari satu.', opts:['Menghubungi vendor satu per satu (telepon/WhatsApp)','Mengecek pricelist PDF yang tersedia','Mengacu pada proyek sebelumnya','Meminta admin/drafter mencarikan','Belum ada cara baku'] },
   ],
   vendor: [
@@ -446,7 +447,7 @@ const VENDOR_ROLE = {
     { t:'note', eyebrow:'Khusus posisi Owner / Manajemen', label:'Beberapa pertanyaan tambahan mengenai kendali dan visibilitas Anda atas perusahaan.' },
     { t:'radio', k:'v_own_visibilitas', label:'Untuk mengetahui omzet, stok, dan piutang hari ini, bagaimana caranya?', req:true, opts:['Membuka sendiri dashboard/laporan yang tersedia','Meminta laporan kepada admin atau finance','Menunggu rekap Excel mingguan','Menanyakan satu per satu kepada tim','Baru diketahui saat tutup buku'] },
     { t:'radio', k:'v_own_tutupbuku', label:'Berapa lama laporan bulanan siap setelah bulan berakhir?', opts:['Kurang dari 3 hari','Sekitar 1 minggu','Sekitar 2 minggu','Lebih dari 1 bulan','Tidak dibuat secara rutin'] },
-    { t:'checkbox', k:'v_own_kontrol', label:'Hal apa yang paling sulit Anda kendalikan dari posisi Anda?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Diskon yang diberikan tim sales','Selisih stok fisik dengan catatan','Piutang yang semakin menua','Margin per order tidak terlihat','Kinerja antar sales sulit dibandingkan','Order atau klaim yang tidak tercatat','Ketergantungan pada satu\u2013dua orang kunci'] },
+    { t:'checkbox', k:'v_own_kontrol', label:'Hal apa yang paling sulit Anda kendalikan dari posisi Anda?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Diskon yang diberikan tim sales','Selisih stok fisik dengan catatan','Piutang yang semakin menua','Margin per order tidak terlihat','Kinerja antar sales sulit dibandingkan','Order atau klaim yang tidak tercatat','Ketergantungan pada satu\u2013dua orang kunci','Harga modal dari prinsipal yang berubah-ubah','Stok mati / barang lama yang menumpuk','Kepastian jadwal pengiriman ke pelanggan','Retur & barang rusak saat pengiriman','Arus kas \u2014 bayar pemasok lebih cepat daripada terima pembayaran','Perhitungan komisi sales yang masih manual','Sisa material / potongan yang tidak tercatat','Kesalahan ukur atau potong yang menjadi biaya','Penawaran yang berhenti tanpa kabar / tidak ter-follow-up','Data pelanggan tersimpan di HP masing-masing sales','Harga jual antar cabang / antar sales yang tidak seragam'] },
     { t:'radio', k:'v_own_margin', label:'Apakah Anda dapat melihat margin per order atau per pelanggan?', opts:['Ya, hingga per order','Hanya total per bulan','Dihitung manual bila diperlukan','Tidak dapat dilihat'] },
     { t:'radio', k:'v_own_pengganti', label:'Jika Anda tidak di tempat selama dua minggu, apakah operasional tetap berjalan?', opts:['Ya, seluruhnya sudah ada prosedurnya','Sebagian \u2014 keputusan besar tetap menunggu saya','Banyak hal terhenti','Praktis tidak dapat ditinggalkan'] },
     { t:'radio', k:'v_own_spend', label:'Berapa pengeluaran perusahaan untuk software saat ini per bulan?', opts:['Belum ada','Kurang dari Rp 1 juta','Rp 1\u20135 juta','Rp 5\u201315 juta','Lebih dari Rp 15 juta'] },
@@ -508,7 +509,7 @@ function buildSteps(seg) {
 
     { key:'Solusi', eyebrow:'Bagian 4 · Solusi', title:'Fitur yang paling relevan untuk ' + low, fields:[
       { t:'grid', k:'usefulness', label:'Seberapa dibutuhkan fitur berikut?', req:true, rows:FEATURES[seg], cols:USE },
-      { t:'checkbox', k:'top3', label:'Jika hanya boleh memilih 3, mana yang paling dibutuhkan?', req:true, max:3, opts:FEATURES[seg] },
+      { t:'checkbox', k:'top3', label:'Jika hanya boleh memilih 5, mana yang paling dibutuhkan?', req:true, max:5, opts:FEATURES[seg] },
       { t:'checkbox', k:'ai', label:'Fitur AI mana yang menarik bagi Anda?', opts:['Membaca gambar kerja → ukuran & kebutuhan material otomatis','Draft penawaran otomatis dari daftar kebutuhan','Pemeriksaan harga sebelum penawaran dikirim','Bertanya data bisnis dengan bahasa sehari-hari ("berapa omzet bulan ini?")','Tidak tertarik fitur AI'] },
     ]},
 
@@ -605,6 +606,11 @@ function field(f) {
       const ck = state.answers[f.k]===o ? 'checked':'';
       return '<label class="opt"><input type="radio" name="'+f.k+'" value="'+esc(o)+'" '+ck+'><span class="mark"></span>'+esc(o)+'</label>';
     }).join('') + '</div>';
+    if (f.other) {
+      const ov = esc(state.answers[f.k+'_lain'] || '');
+      const show = state.answers[f.k] === f.other;
+      body += '<div class="other-wrap" data-otherwrap="'+f.k+'" data-show="'+esc(f.other)+'"'+(show?'':' style="display:none"')+'><input type="text" data-otherk="'+f.k+'_lain" value="'+ov+'" placeholder="Sebutkan…"></div>';
+    }
   } else if (f.t === 'checkbox') {
     const cur = state.answers[f.k] || [];
     const maxNote = f.max ? '<div class="pick-note" data-max="'+f.max+'" data-k="'+f.k+'">Pilih maksimal '+f.max+' — <span class="cnt">'+cur.length+'</span>/'+f.max+'</div>' : '';
@@ -677,6 +683,15 @@ function wireInputs() {
       inp.value = d ? Number(d).toLocaleString('id-ID') : '';
     });
   });
+  root.querySelectorAll('[data-otherwrap]').forEach(w => {
+    const k = w.dataset.otherwrap, trig = w.dataset.show;
+    root.querySelectorAll('input[name="'+k+'"]').forEach(r => r.addEventListener('change', () => {
+      const sel = root.querySelector('input[name="'+k+'"]:checked');
+      const on = !!sel && sel.value === trig;
+      w.style.display = on ? '' : 'none';
+      if (on) w.querySelector('input').focus();
+    }));
+  });
   root.querySelectorAll('.pick-note[data-max]').forEach(note => {
     const k = note.dataset.k, max = +note.dataset.max;
     const boxes = () => Array.from(root.querySelectorAll('input[name="'+k+'"]'));
@@ -705,6 +720,7 @@ function collect() {
       state.answers[k] = cur;
     }
   });
+  root.querySelectorAll('input[data-otherk]').forEach(el => { state.answers[el.dataset.otherk] = el.value.trim(); });
 }
 
 function validate(s) {
@@ -714,11 +730,12 @@ function validate(s) {
     if (errEl) errEl.classList.remove('on');
     if (!f.req) return;
     const v = state.answers[f.k];
-    let bad = false;
-    if (f.t === 'grid') bad = !v || Object.keys(v).length < f.rows.length;
+    let bad = false, msg = 'Wajib diisi.';
+    if (f.t === 'grid') { bad = !v || Object.keys(v).length < f.rows.length; msg = 'Lengkapi semua baris.'; }
     else if (f.t === 'checkbox') bad = !v || v.length === 0;
     else bad = !v || (typeof v === 'string' && !v.trim());
-    if (bad) { ok = false; if (errEl){ errEl.textContent = f.t==='grid'?'Lengkapi semua baris.':'Wajib diisi.'; errEl.classList.add('on'); } if (!firstBad) firstBad = errEl; }
+    if (!bad && f.other && v === f.other && !(state.answers[f.k+'_lain']||'').trim()) { bad = true; msg = 'Mohon disebutkan.'; }
+    if (bad) { ok = false; if (errEl){ errEl.textContent = msg; errEl.classList.add('on'); } if (!firstBad) firstBad = errEl; }
   });
   if (firstBad) firstBad.closest('fieldset').scrollIntoView({ behavior:'smooth', block:'center' });
   return ok;
@@ -727,7 +744,7 @@ function validate(s) {
 /* ===================== SUBMIT ===================== */
 /* Penanda versi halaman — ikut terkirim tiap jawaban, supaya selalu jelas
    responden mengisi versi form yang mana. Naikkan huruf tiap rilis. */
-var FORM_VERSION = '2026-08-01-a';
+var FORM_VERSION = '2026-08-01-b';
 var SB_URL = 'https://qygovbenwcmuxmsoejxg.supabase.co/rest/v1/pmf_responses';
 var SB_KEY = 'sb_publishable_fIuFpBRNVroxJvrRywJQkQ_GLELKQsw';
 
@@ -742,7 +759,9 @@ function submit() {
   var S = function(v){ return v == null ? '' : String(v); };
   var row = {
     segment: p.segment, segment_label: p.segmentLabel,
-    nama: S(a.nama), perusahaan: S(a.perusahaan), posisi: S(a.posisi), peran: S(a.peran),
+    nama: S(a.nama), perusahaan: S(a.perusahaan),
+    posisi: S(a.posisi === 'Lainnya' && a.posisi_lain ? 'Lainnya: ' + a.posisi_lain : a.posisi),
+    peran: S(a.peran),
     lama: S(a.lama), tim: S(a.tim), proyekbln: S(a.proyekbln), nilaiproyek: S(a.nilaiproyek),
     tooling: L(a.tooling), lamapenawaran: S(a.lamapenawaran), siapabikin: S(a.siapabikin),
     caraharga: L(a.caraharga), lakudiam: S(a.lakudiam),
