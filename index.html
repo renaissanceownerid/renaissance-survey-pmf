@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PT Renaissance · Riset Operasional</title>
+<title>Renaissance · Riset Operasional</title>
 <style>
   :root {
     --bg: #F2F0EB;
@@ -277,7 +277,7 @@
 <div class="app">
   <aside class="rail">
     <div class="rail-brand">
-      <span class="bt"><b>PT Renaissance</b><span>Riset operasional</span></span>
+      <span class="bt"><b>Renaissance</b><span>Riset operasional</span></span>
     </div>
     <div class="rail-title">Sistem untuk menjalankan studio desain, vendor &amp; kontraktor</div>
     <p class="rail-sub">8–10 menit · jawaban Anda menentukan fitur yang kami prioritaskan.</p>
@@ -550,12 +550,11 @@ function welcome() {
   const cards = SEGMENTS.map(s => '<button type="button" class="seg" data-seg="'+s.id+'" aria-pressed="false"><span class="ic">'+IC[s.id]+'</span><b>'+s.label+'</b><span>'+s.tag+'</span></button>').join('');
   root.innerHTML =
     '<section class="step">'+
-      '<div class="eyebrow">PT Renaissance</div>'+
-      '<h1 class="q">Renaissance ERP</h1>'+
-      '<p class="lede">Renaissance ERP adalah <b>software-as-a-service</b> untuk para desainer beserta ekosistemnya — vendor material dan kontraktor. Kami sedang memetakan kebutuhan serta hambatan operasional yang paling sering Anda hadapi, agar sistem yang kami bangun benar-benar menjawab persoalan nyata di lapangan.</p>'+
-      '<p class="lede">Kuesioner ini menyesuaikan dengan jenis usaha Anda. Pilih yang paling sesuai untuk memulai — <b>jawaban Anda langsung menentukan fitur yang kami prioritaskan.</b></p>'+
+      '<h1 class="q">Renaissance</h1>'+
+      '<p class="lede">Gue lagi bangun startup namanya “Renaissance” — sistem buat bantu temen temen desainer untuk urusan operasional kantor (material library vendor, timeline project, assignment pic desain dll).</p>'+
+      '<p class="lede">Sebelum gue lanjut, gue butuh masukan dari temen temen, supaya sistemnya sesuai kebutuhan temen temen, <b>gue mau minta tolong dong buat isi questionnaire singkat 5 menit!!</b></p>'+
       '<div class="seg-grid">'+cards+'</div>'+
-      '<div class="welcome-meta"><div><b>±9 menit</b><span>8 bagian</span></div><div><b>Menyesuaikan</b><span>per jenis usaha</span></div><div><b>Tanpa benar/salah</b><span>sesuai kondisi Anda</span></div></div>'+
+      '<div class="welcome-meta"><div><b>±5 menit</b><span>8 bagian</span></div><div><b>Menyesuaikan</b><span>per jenis usaha</span></div><div><b>Tanpa benar/salah</b><span>sesuai kondisi Anda</span></div></div>'+
       '<div class="nav" style="border:0;padding:0;margin-top:26px;justify-content:flex-end"><button type="button" class="btn primary" id="startBtn" disabled>Mulai '+arrow+'</button></div>'+
     '</section>';
   root.querySelectorAll('.seg').forEach(b => b.addEventListener('click', () => {
@@ -728,7 +727,7 @@ function validate(s) {
 /* ===================== SUBMIT ===================== */
 /* Penanda versi halaman — ikut terkirim tiap jawaban, supaya selalu jelas
    responden mengisi versi form yang mana. Naikkan huruf tiap rilis. */
-var FORM_VERSION = '2026-07-30-a';
+var FORM_VERSION = '2026-08-01-a';
 var SB_URL = 'https://qygovbenwcmuxmsoejxg.supabase.co/rest/v1/pmf_responses';
 var SB_KEY = 'sb_publishable_fIuFpBRNVroxJvrRywJQkQ_GLELKQsw';
 
