@@ -301,7 +301,7 @@ const IC = {
 
 const SEGMENTS = [
   { id:'desainer',   label:'Desainer',             tag:'Arsitek & desainer interior — studio desain' },
-  { id:'vendor',     label:'Vendor',               tag:'Suplai & penjualan material' },
+  { id:'vendor',     label:'Vendor',               tag:'Suplai material & fabricator (kitchen, stone, dll.)' },
   { id:'kontraktor', label:'Kontraktor / Sub-con', tag:'Pelaksana pekerjaan di proyek' },
 ];
 
@@ -327,12 +327,15 @@ const PROBLEMS = {
     'Invoice DP & termin klien terlewat ditagih',
   ],
   vendor: [
-    'Stok pada catatan tidak sesuai dengan stok fisik di gudang',
-    'Tidak ada data pasti produk terlaris — kerap kehabisan saat dibutuhkan',
-    'Harga berbeda per tipe pelanggan, sulit dikendalikan',
-    'Piutang: tagihan pelanggan terlambat atau terlewat ditagih',
-    'Sales tidak memegang data stok & harga terbaru saat bertemu klien',
-    'Surat jalan & status pengiriman tidak terpantau',
+    'Salah ukur — hasil survei, gambar, sama hasil potong nggak nyambung',
+    'Harga material naik, tapi penawaran lama masih kepake harga lama',
+    'Sisa potongan material kebuang / nggak kecatat',
+    'Antrian workshop mepet sama janji kirim ke klien',
+    'Koordinasi workshop sama tim pasang di lapangan suka miss',
+    'Status tiap proyek susah dilihat (potong / finishing / kirim / pasang)',
+    'Piutang & termin klien telat atau lewat ditagih',
+    'Komplain / servis setelah pasang nggak ke-track',
+    'Ketergantungan ke 1–2 orang kunci (estimator / mandor)',
   ],
   kontraktor: [
     'BOQ ratusan item, revisi berulang, versi sulit ditelusuri',
@@ -357,15 +360,14 @@ const FEATURES = {
     'CRM: data klien & riwayat proyek',
   ],
   vendor: [
-    'Modul Sales: penawaran, negosiasi, hingga kesepakatan dalam satu layar',
-    'CRM: pelanggan, riwayat order & follow-up terpusat',
-    'Dari gambar kerja klien → hitungan material + penawaran siap kirim',
-    'Stok semua gudang real-time + pengingat pesan ulang',
-    'Harga otomatis menyesuaikan tipe pelanggan',
-    'Piutang terpantau + pengingat penagihan',
-    'Laporan produk terlaris & paling lambat bergerak',
-    'Surat jalan & tracking pengiriman',
-    'Dashboard owner: omzet, stok, piutang',
+    'Penawaran / proposal otomatis langsung dari gambar/ukuran',
+    'Sistem harga per-unit / modul biar konsisten antar orang',
+    'Perpustakaan material vendor outsource + harga update otomatis tiap ada perubahan',
+    'Lihat status produksi tiap proyek dalam satu layar (potong → finishing → kirim → pasang)',
+    'Kalkulator material + hitung sisa potongan',
+    'Jadwal workshop & pemasangan',
+    'Data klien + pengingat follow-up (CRM)',
+    'Invoice DP/termin + pengingat nagih',
   ],
   kontraktor: [
     'Dari gambar kerja → BOQ otomatis + penawaran PDF siap kirim',
@@ -391,13 +393,13 @@ const PROFIL = {
     { t:'radio', k:'nilaiproyek', label:'Kisaran fee desain per m²', opts:O_FEE_M2 },
   ],
   vendor: [
-    { t:'text',  k:'nama', label:'Nama lengkap', req:true },
-    { t:'text',  k:'perusahaan', label:'Nama perusahaan', req:true },
-    { t:'radio', k:'posisi', label:'Posisi Anda', req:true, opts:['Owner / Direktur','Manajer','Sales','Admin / Keuangan','Gudang','Lainnya'] },
-    { t:'radio', k:'lama', label:'Sudah berapa lama usaha Anda beroperasi?', opts:O_LAMA },
-    { t:'radio', k:'tim', label:'Jumlah karyawan (termasuk sales & gudang)', opts:O_JUMLAH },
-    { t:'radio', k:'proyekbln', label:'Rata-rata order masuk per bulan', opts:O_PERBULAN },
-    { t:'radio', k:'nilaiproyek', label:'Kisaran nilai satu order', opts:O_NILAI },
+    { t:'text',  k:'nama', label:'Nama kamu', req:true },
+    { t:'text',  k:'perusahaan', label:'Nama usaha / perusahaan', req:true },
+    { t:'radio', k:'posisi', label:'Posisi kamu di sini', req:true, other:'Lainnya', opts:['Owner / Direktur','Manajer','Sales','Estimator','Kepala Workshop','Admin / Keuangan','Lainnya'] },
+    { t:'radio', k:'lama', label:'Usaha kamu udah jalan berapa lama?', opts:O_LAMA },
+    { t:'radio', k:'tim', label:'Sekarang timnya kira-kira berapa orang? (kantor + workshop)', opts:O_JUMLAH },
+    { t:'radio', k:'proyekbln', label:'Biasanya berapa order/proyek jalan barengan dalam sebulan?', opts:O_PERBULAN },
+    { t:'radio', k:'nilaiproyek', label:'Kira-kira nilai satu order berapa?', opts:O_NILAI },
   ],
   kontraktor: [
     { t:'text',  k:'nama', label:'Nama lengkap', req:true },
@@ -420,10 +422,15 @@ const CARAKERJA = {
     { t:'checkbox', k:'caraharga', label:'Bagaimana Anda memperoleh informasi harga & ketersediaan material?', hint:'Dapat memilih lebih dari satu.', opts:['Menghubungi vendor satu per satu (telepon/WhatsApp)','Mengecek pricelist PDF yang tersedia','Mengacu pada proyek sebelumnya','Meminta admin/drafter mencarikan','Belum ada cara baku'] },
   ],
   vendor: [
-    { t:'checkbox', k:'tooling', label:'Penawaran harga dibuat menggunakan apa?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Excel / Google Sheets','Word / template dokumen','Tulis tangan / nota','WhatsApp (kirim foto lalu negosiasi)','Software akuntansi (Accurate, Jurnal, dll.)','Software / ERP custom'] },
-    { t:'radio', k:'lamapenawaran', label:'Berapa lama dari permintaan masuk hingga penawaran siap dikirim?', req:true, opts:O_DURASI },
-    { t:'radio', k:'siapabikin', label:'Siapa yang membuat penawaran?', req:true, opts:['Principal','Owner / Direktur','Estimator','Sales','Admin','Finance','Procurement','Outsource / freelance','Tidak menentu, bergantian'] },
-    { t:'textarea', k:'lakudiam', label:'Produk apa yang paling laris, dan mana yang perputarannya paling lambat?', hint:'Sebutkan beberapa contoh.' },
+    { t:'radio', k:'v_gambar', label:'Kalau bikin gambar desain, paling sering pakai apa?', opts:['SketchUp','AutoCAD','Software custom','Manual / tangan','Nggak bikin gambar sendiri'] },
+    { t:'checkbox', k:'tooling', label:'Penawaran / proposal desain dibuat pakai apa?', hint:'Boleh pilih lebih dari satu.', req:true, opts:['Excel / Google Sheets','Word / template dokumen','Tulis tangan / nota','WhatsApp (kirim foto lalu nego)','Sistem harga per-unit / modul','Software / ERP custom'] },
+    { t:'radio', k:'lamapenawaran', label:'Dari mulai ngitung sampai penawaran siap kirim, biasanya berapa lama?', req:true, opts:O_DURASI },
+    { t:'radio', k:'v_revisi', label:'Sebelum deal, gambar/ukuran biasanya direvisi berapa kali?', opts:['0–1 kali','2–3 kali','4–5 kali','Lebih dari 5 kali','Nggak nentu'] },
+    { t:'radio', k:'siapabikin', label:'Yang ngitung harga siapa?', opts:['Owner / Direktur','Estimator','Sales','Admin','Kepala Workshop','Outsource / freelance','Nggak nentu, gantian'] },
+    { t:'checkbox', k:'v_outsource', label:'Material apa aja yang biasanya kamu outsource?', hint:'Boleh pilih lebih dari satu.', opts:['Sintered stone','Marmer','Artificial stone','Hardware','Lainnya'] },
+    { t:'checkbox', k:'caraharga', label:'Buat material outsource itu, cara ngitung harganya gimana?', hint:'Boleh pilih lebih dari satu.', opts:['Minta quotation ke vendor tiap proyek','Pakai harga rata-rata sendiri','Punya daftar harga tetap','Markup dari HPP'] },
+    { t:'radio', k:'v_hargalama', label:'Kalau harga material lagi naik, penawaran kamu langsung ikut harga baru atau masih kepake harga lama?', opts:['Langsung update harga baru','Masih sering kepake harga lama','Campur, tergantung siapa yang ngerjain','Nggak kepantau'] },
+    { t:'radio', k:'v_conv', label:'Dari sekian penawaran yang kamu kirim, kira-kira berapa persen yang akhirnya jadi deal?', opts:['< 10%','10–25%','25–50%','> 50%','Nggak kepantau'] },
   ],
   kontraktor: [
     { t:'checkbox', k:'tooling', label:'BOQ & penawaran dibuat menggunakan apa?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Excel / Google Sheets','Word / template dokumen','Tulis tangan','Langsung melalui WhatsApp','Software estimasi khusus','Software / ERP custom'] },
@@ -435,7 +442,7 @@ const CARAKERJA = {
 /* ===== PERTANYAAN LANJUTAN PER POSISI — KHUSUS VENDOR ===== */
 const VENDOR_ROLE = {
   sales: [
-    { t:'note', eyebrow:'Khusus posisi Sales', label:'Beberapa pertanyaan tambahan mengenai keseharian Anda menangani pelanggan.' },
+    { t:'note', eyebrow:'Khusus posisi Sales', label:'Beberapa pertanyaan tambahan soal keseharian kamu pegang pelanggan.' },
     { t:'radio', k:'v_sales_volume', label:'Rata-rata berapa permintaan penawaran yang Anda tangani per minggu?', req:true, opts:['Kurang dari 5','5\u201310','11\u201325','26\u201350','Lebih dari 50'] },
     { t:'checkbox', k:'v_sales_lacak', label:'Bagaimana Anda melacak permintaan yang sedang berjalan (follow-up, negosiasi, menunggu PO)?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Mengandalkan ingatan','Catatan pribadi / buku','Percakapan WhatsApp per pelanggan','Excel / Google Sheets bersama','Papan tulis atau grup pesan kantor','Sistem CRM'] },
     { t:'radio', k:'v_sales_hilang', label:'Dalam sebulan, berapa permintaan yang batal karena terlambat direspons atau terlewat?', opts:['Hampir tidak ada','1\u20133 permintaan','4\u201310 permintaan','Lebih dari 10 permintaan','Tidak terpantau'] },
@@ -444,7 +451,7 @@ const VENDOR_ROLE = {
     { t:'radio', k:'v_sales_komisi', label:'Bagaimana komisi atau insentif Anda dihitung?', opts:['Otomatis dari sistem','Dihitung manual oleh finance','Saya hitung sendiri lalu dicocokkan','Sering selisih dan terlambat','Tidak ada komisi'] },
   ],
   owner: [
-    { t:'note', eyebrow:'Khusus posisi Owner / Manajemen', label:'Beberapa pertanyaan tambahan mengenai kendali dan visibilitas Anda atas perusahaan.' },
+    { t:'note', eyebrow:'Khusus posisi Owner / Manajemen', label:'Beberapa pertanyaan tambahan soal kendali & visibilitas kamu atas usaha.' },
     { t:'radio', k:'v_own_visibilitas', label:'Untuk mengetahui omzet, stok, dan piutang hari ini, bagaimana caranya?', req:true, opts:['Membuka sendiri dashboard/laporan yang tersedia','Meminta laporan kepada admin atau finance','Menunggu rekap Excel mingguan','Menanyakan satu per satu kepada tim','Baru diketahui saat tutup buku'] },
     { t:'radio', k:'v_own_tutupbuku', label:'Berapa lama laporan bulanan siap setelah bulan berakhir?', opts:['Kurang dari 3 hari','Sekitar 1 minggu','Sekitar 2 minggu','Lebih dari 1 bulan','Tidak dibuat secara rutin'] },
     { t:'checkbox', k:'v_own_kontrol', label:'Hal apa yang paling sulit Anda kendalikan dari posisi Anda?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Diskon yang diberikan tim sales','Selisih stok fisik dengan catatan','Piutang yang semakin menua','Margin per order tidak terlihat','Kinerja antar sales sulit dibandingkan','Order atau klaim yang tidak tercatat','Ketergantungan pada satu\u2013dua orang kunci','Harga modal dari prinsipal yang berubah-ubah','Stok mati / barang lama yang menumpuk','Kepastian jadwal pengiriman ke pelanggan','Retur & barang rusak saat pengiriman','Arus kas \u2014 bayar pemasok lebih cepat daripada terima pembayaran','Perhitungan komisi sales yang masih manual','Sisa material / potongan yang tidak tercatat','Kesalahan ukur atau potong yang menjadi biaya','Penawaran yang berhenti tanpa kabar / tidak ter-follow-up','Data pelanggan tersimpan di HP masing-masing sales','Harga jual antar cabang / antar sales yang tidak seragam'] },
@@ -744,7 +751,7 @@ function validate(s) {
 /* ===================== SUBMIT ===================== */
 /* Penanda versi halaman — ikut terkirim tiap jawaban, supaya selalu jelas
    responden mengisi versi form yang mana. Naikkan huruf tiap rilis. */
-var FORM_VERSION = '2026-08-01-b';
+var FORM_VERSION = '2026-08-06-a';
 var SB_URL = 'https://qygovbenwcmuxmsoejxg.supabase.co/rest/v1/pmf_responses';
 var SB_KEY = 'sb_publishable_fIuFpBRNVroxJvrRywJQkQ_GLELKQsw';
 
