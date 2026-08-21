@@ -386,9 +386,9 @@ const PROFIL = {
   desainer: [
     { t:'text',  k:'nama', label:'Nama lengkap', req:true },
     { t:'text',  k:'perusahaan', label:'Nama studio / perusahaan', req:true },
-    { t:'radio', k:'posisi', label:'Posisi Anda', req:true, other:'Lainnya', opts:['Principal','Arsitek / Interior','Senior Architect','Junior Architect','Intern','Drafter','Lainnya'] },
+    { t:'radio', k:'posisi', label:'Posisi kamu', req:true, other:'Lainnya', opts:['Principal','Arsitek / Interior','Senior Architect','Junior Architect','Intern','Drafter','Lainnya'] },
     { t:'radio', k:'lama', label:'Sudah berapa lama kamu bekerja?', opts:O_LAMA },
-    { t:'radio', k:'tim', label:'Jumlah orang di studio Anda', opts:O_JUMLAH_S },
+    { t:'radio', k:'tim', label:'Jumlah orang di studio kamu', opts:O_JUMLAH_S },
     { t:'radio', k:'proyekbln', label:'Rata-rata proyek desain per bulan', opts:O_PERBULAN },
     { t:'radio', k:'nilaiproyek', label:'Kisaran fee desain per m²', opts:O_FEE_M2 },
   ],
@@ -404,9 +404,9 @@ const PROFIL = {
   kontraktor: [
     { t:'text',  k:'nama', label:'Nama lengkap', req:true },
     { t:'text',  k:'perusahaan', label:'Nama perusahaan', req:true },
-    { t:'radio', k:'posisi', label:'Posisi Anda', req:true, opts:['Owner / Direktur','Project Manager','Estimator / Drafter','Site Manager','Admin / Keuangan','Lainnya'] },
-    { t:'radio', k:'peran', label:'Umumnya Anda berperan sebagai', req:true, opts:['Main contractor','Sub-con','Keduanya'] },
-    { t:'radio', k:'lama', label:'Sudah berapa lama usaha Anda beroperasi?', opts:O_LAMA },
+    { t:'radio', k:'posisi', label:'Posisi kamu', req:true, opts:['Owner / Direktur','Project Manager','Estimator / Drafter','Site Manager','Admin / Keuangan','Lainnya'] },
+    { t:'radio', k:'peran', label:'Umumnya kamu berperan sebagai', req:true, opts:['Main contractor','Sub-con','Keduanya'] },
+    { t:'radio', k:'lama', label:'Sudah berapa lama usaha kamu beroperasi?', opts:O_LAMA },
     { t:'radio', k:'tim', label:'Jumlah tim tetap (termasuk tukang)', opts:O_JUMLAH },
     { t:'radio', k:'proyekbln', label:'Rata-rata proyek berjalan per bulan', opts:O_PERBULAN },
     { t:'radio', k:'nilaiproyek', label:'Kisaran nilai satu proyek', opts:O_NILAI },
@@ -419,7 +419,7 @@ const CARAKERJA = {
     { t:'checkbox', k:'tooling', label:'Penawaran Desain Arsitektur dan/atau Interior untuk calon klien dibuat dengan apa?', hint:'Dapat memilih lebih dari satu.', req:true, opts:['Excel / Google Sheets','Word / template dokumen','Tulis tangan','Langsung melalui WhatsApp','Export dari software desain (AutoCAD, SketchUp)','Software / ERP custom'] },
     { t:'radio', k:'lamapenawaran', label:'Berapa lama pembuatannya?', req:true, opts:O_DURASI },
     { t:'radio', k:'siapabikin', label:'Siapa yang membuat Penawaran Desain Arsitektur dan/atau Interior?', opts:['Principal','Owner / Direktur','Arsitek / desainer penanggung jawab proyek','Drafter','Admin','Finance','Procurement','Outsource / freelance','Tidak menentu, bergantian'] },
-    { t:'checkbox', k:'caraharga', label:'Bagaimana Anda memperoleh informasi harga & ketersediaan material?', hint:'Dapat memilih lebih dari satu.', opts:['Menghubungi vendor satu per satu (telepon/WhatsApp)','Mengecek pricelist PDF yang tersedia','Mengacu pada proyek sebelumnya','Meminta admin/drafter mencarikan','Belum ada cara baku'] },
+    { t:'checkbox', k:'caraharga', label:'Bagaimana kamu memperoleh informasi harga & ketersediaan material?', hint:'Dapat memilih lebih dari satu.', opts:['Menghubungi vendor satu per satu (telepon/WhatsApp)','Mengecek pricelist PDF yang tersedia','Mengacu pada proyek sebelumnya','Meminta admin/drafter mencarikan','Belum ada cara baku'] },
   ],
   vendor: [
     { t:'radio', k:'v_gambar', label:'Kalau bikin gambar desain, paling sering pakai apa?', opts:['SketchUp','AutoCAD','Software custom','Manual / tangan','Nggak bikin gambar sendiri'] },
@@ -488,13 +488,13 @@ const SALES_HAMBATAN = [
 ];
 
 const HARGA_STD = [
-      { t:'radio', k:'model', label:'Model harga yang paling masuk akal bagi Anda', req:true, opts:['Per seat — dibayar per pengguna','Per team — satu harga untuk seluruh tim','Enterprise — seluruh perusahaan + dukungan khusus','Gratis untuk fitur dasar + berbayar untuk premium'] },
-      { t:'radio', k:'harga_bln', label:'Harga bulanan yang wajar menurut Anda', req:true, opts:['$10','$15','$20','$50','$100'] },
+      { t:'radio', k:'model', label:'Model harga yang paling masuk akal bagi kamu', req:true, opts:['Per seat — dibayar per pengguna','Per team — satu harga untuk seluruh tim','Enterprise — seluruh perusahaan + dukungan khusus','Gratis untuk fitur dasar + berbayar untuk premium'] },
+      { t:'radio', k:'harga_bln', label:'Harga bulanan yang wajar menurut kamu', req:true, opts:['$10','$15','$20','$50','$100'] },
       { t:'radio', k:'harga_thn', label:'Jika berlangganan tahunan (lebih hemat)', opts:['$120','$300','$400'] },
     ];
 
 const KEPUTUSAN_STD = [
-      { t:'radio', k:'pemutus', label:'Siapa yang memutuskan pembelian software di perusahaan Anda?', opts:['Saya sendiri','Owner / Direktur (bukan saya)','Keputusan bersama','Kantor pusat'] },
+      { t:'radio', k:'pemutus', label:'Siapa yang memutuskan pembelian software di perusahaan kamu?', opts:['Saya sendiri','Owner / Direktur (bukan saya)','Keputusan bersama','Kantor pusat'] },
       { t:'checkbox', k:'hambatan', label:'Apa hambatan terbesar untuk mulai menggunakan sistem baru?', hint:'Dapat memilih lebih dari satu.', opts:['Kurang paham teknologi, bingung memulai','Perlu pendampingan & pelatihan lebih dulu','Tidak ada waktu untuk setup & migrasi data','Tim sulit beradaptasi dengan perubahan','Harganya','Kekhawatiran keamanan data','Pengalaman kurang baik dengan software sebelumnya','Tidak ada hambatan berarti'] },
       { t:'radio', k:'kapan', label:'Jika sistemnya sesuai kebutuhan, kapan realistis mulai digunakan?', opts:['Bulan ini','1–3 bulan','3–6 bulan','> 6 bulan','Belum dipertimbangkan'] },
     ];
@@ -503,21 +503,21 @@ function buildSteps(seg) {
   const S = SEGMENTS.find(s => s.id === seg);
   const low = S.label.toLowerCase();
   return [
-    { key:'Profil', eyebrow:'Bagian 1 · Profil', title:'Profil usaha Anda', fields:PROFIL[seg] },
+    { key:'Profil', eyebrow:'Bagian 1 · Profil', title:'Profil usaha kamu', fields:PROFIL[seg] },
 
     { key:'Cara kerja', eyebrow:'Bagian 2 · Cara kerja', title:'Cara kerja tim saat ini', fields:function(a){ return CARAKERJA[seg].concat(roleFields(seg, a.posisi)); } },
 
-    { key:'Masalah', eyebrow:'Bagian 3 · Masalah', title:'Kendala operasional pada ' + low, note:'Bagian ini disesuaikan dengan jenis usaha Anda.', fields:[
+    { key:'Masalah', eyebrow:'Bagian 3 · Masalah', title:'Kendala operasional pada ' + low, note:'Bagian ini disesuaikan dengan jenis usaha kamu.', fields:[
       { t:'grid', k:'freq', label:'Seberapa sering hal berikut terjadi?', req:true, rows:PROBLEMS[seg], cols:FREQ },
       { t:'checkbox', k:'palingrugi', label:'Dari daftar di atas, mana yang paling merugikan?', hint:'Dapat memilih lebih dari satu.', req:true, opts:PROBLEMS[seg] },
       { t:'radio', k:'kerugian', label:'Perkiraan kerugian per bulan', opts:['Hampir tidak ada','< Rp 5 juta','Rp 5–25 juta','Rp 25–100 juta','> Rp 100 juta','Sulit diperkirakan'] },
-      { t:'blocks', k:'severity', label:'Seberapa besar dampaknya terhadap bisnis Anda?', req:true, opts:['Tidak mengganggu','Sedikit mengganggu','Cukup mengganggu','Sangat mengganggu','Kritis — menghambat pertumbuhan'] },
+      { t:'blocks', k:'severity', label:'Seberapa besar dampaknya terhadap bisnis kamu?', req:true, opts:['Tidak mengganggu','Sedikit mengganggu','Cukup mengganggu','Sangat mengganggu','Kritis — menghambat pertumbuhan'] },
     ]},
 
     { key:'Solusi', eyebrow:'Bagian 4 · Solusi', title:'Fitur yang paling relevan untuk ' + low, fields:[
       { t:'grid', k:'usefulness', label:'Seberapa dibutuhkan fitur berikut?', req:true, rows:FEATURES[seg], cols:USE },
       { t:'checkbox', k:'top3', label:'Jika hanya boleh memilih 5, mana yang paling dibutuhkan?', req:true, max:5, opts:FEATURES[seg] },
-      { t:'checkbox', k:'ai', label:'Fitur AI mana yang menarik bagi Anda?', opts:['Membaca gambar kerja → ukuran & kebutuhan material otomatis','Draft penawaran otomatis dari daftar kebutuhan','Pemeriksaan harga sebelum penawaran dikirim','Bertanya data bisnis dengan bahasa sehari-hari ("berapa omzet bulan ini?")','Tidak tertarik fitur AI'] },
+      { t:'checkbox', k:'ai', label:'Fitur AI mana yang menarik bagi kamu?', opts:['Membaca gambar kerja → ukuran & kebutuhan material otomatis','Draft penawaran otomatis dari daftar kebutuhan','Pemeriksaan harga sebelum penawaran dikirim','Bertanya data bisnis dengan bahasa sehari-hari ("berapa omzet bulan ini?")','Tidak tertarik fitur AI'] },
     ]},
 
     { key:function(a){ return isVendorSales(seg,a) ? 'Adopsi' : 'Harga'; },
@@ -538,8 +538,8 @@ function buildSteps(seg) {
       { t:'text', k:'referral', label:'Mengenal rekan bisnis dengan tantangan serupa? Sebutkan jenis usahanya' },
     ]},
 
-    { key:'Cerita', eyebrow:'Bagian 8 · Cerita', title:'Ceritakan dengan kata-kata Anda sendiri', note:'Bagian terakhir — setelah melihat seluruh pertanyaan di atas, mungkin ada hal yang ingin Anda sampaikan lebih rinci.', fields:[
-      { t:'textarea', k:'ceritamasalah', label:'Masalah operasional apa yang paling mengganggu di bisnis Anda?', hint:'Semakin detail, semakin membantu kami.', req:true },
+    { key:'Cerita', eyebrow:'Bagian 8 · Cerita', title:'Ceritakan dengan kata-kata kamu sendiri', note:'Bagian terakhir — setelah melihat seluruh pertanyaan di atas, mungkin ada hal yang ingin kamu sampaikan lebih rinci.', fields:[
+      { t:'textarea', k:'ceritamasalah', label:'Masalah operasional apa yang paling mengganggu di bisnis kamu?', hint:'Semakin detail, semakin membantu kami.', req:true },
       { t:'textarea', k:'sudahcoba', label:'Apa yang sudah dicoba untuk mengatasinya, dan mengapa belum tuntas?' },
     ]},
   ];
@@ -751,7 +751,7 @@ function validate(s) {
 /* ===================== SUBMIT ===================== */
 /* Penanda versi halaman — ikut terkirim tiap jawaban, supaya selalu jelas
    responden mengisi versi form yang mana. Naikkan huruf tiap rilis. */
-var FORM_VERSION = '2026-08-06-a';
+var FORM_VERSION = '2026-08-21-a';
 var SB_URL = 'https://qygovbenwcmuxmsoejxg.supabase.co/rest/v1/pmf_responses';
 var SB_KEY = 'sb_publishable_fIuFpBRNVroxJvrRywJQkQ_GLELKQsw';
 
